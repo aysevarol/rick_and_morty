@@ -1,20 +1,34 @@
-from fastapi import FastAPI, Request
+from pydantic import BaseModel
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from datetime import datetime
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-#sample_url = "https://rickandmortyapi.com/api/character"
-#sample_date = datetime.now()
 
-@app.get("/show_info")
-async def show_info(request: Request):
-    current_time = datetime.now()
-    current_url = request.url
-    return templates.TemplateResponse("index.html", {"request": request, "current_time": current_time, "current_url": current_url})
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("home.html", {request: Request})
 
-#@app.get("/index/", response_class=HTMLResponse)
-#def index(request: Request):
-    #return templates.TemplateResponse("index.html", {"request": request, "url": sample_url, "current_date": sample_date})
+
+@app.get("/characters", response_class=HTMLResponse)
+async def characters(requests):
+    response = requests.get("https://rickandmortyapi.com/api/character")
+    characters = response.json(["results"])
+    return templates.TemplateResponse("characters.html", {"request": request, "characters": characters})
+
+
+@app.get("/character/{character_id}", response_class=HTMLResponse)
+async def character(request: Request, character_id: int):
+    response = requests.get(f"https://rickandmortyapi.com/api/character/{character_id}")
+    character = response.json()
+    return templates.TemplateResponse("character.html", {"request": request, "character": character})
+
+
+@app.post("/search", response_class=HTMLResponse)
+async def search(request: Request, name: str = Form(...)):
+    response = requests.get(f"https://rickandmortyapi.com/api/character/?name={name}")
+    characters = response.json()["results"]
+    return templates.TemplateResponse("characters.html", {"request": request, "characters": characters})
+
