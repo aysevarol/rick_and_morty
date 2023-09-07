@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title>Characters</title>
+</head>
+<body>
+  <h1>Characters</h1>
+  <ul>
+    {% for character in characters %}
+      <li><a href="/character/{{ character.id }}">{{ character.name }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
