@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title>Search Results</title>
+</head>
+<body>
+  <h1>Search Results</h1>
+  <ul>
+    {% for character in characters %}
+      <li><a href="/character/{{ character.id }}">{{ character.name }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
