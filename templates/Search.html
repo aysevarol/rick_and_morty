@@ -1,13 +1,13 @@
 <html>
 <head>
-  <title>Search Results</title>
+    <title>Search Character</title>
 </head>
 <body>
-  <h1>Search Results</h1>
-  <ul>
-    {% for character in characters %}
-      <li><a href="/character/{{ character.id }}">{{ character.name }}</a></li>
-    {% end-for %}
-  </ul>
+    <h1>Search Character</h1>
+    <form method="post" action="/search">
+        <label for="character_name">Character Name:</label>
+        <input type="text" id="character_name" name="name" required>
+        <button type="submit">Search</button>
+    </form>
 </body>
 </html>

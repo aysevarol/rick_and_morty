@@ -1,13 +1,14 @@
 <html>
 <head>
-  <title>Characters</title>
+    <title>Character List</title>
 </head>
 <body>
-  <h1>Characters</h1>
-  <ul>
-    {% for character in characters %}
-      <li><a href="/character/{{ character.id }}">{{ character.name }}</a></li>
-    {% end-for %}
-  </ul>
+    <h1>Character List</h1>
+    <ul>
+        {% for character in character_list %}
+            <li>{{ character.name }} - {{ character.status }}</li>
+        {% endfor %}
+    </ul>
+     <a href="/search"><button>Search Character</button></a>
 </body>
 </html>
