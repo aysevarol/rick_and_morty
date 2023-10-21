@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Character List</title>
@@ -6,9 +7,13 @@
     <h1>Character List</h1>
     <ul>
         {% for character in character_list %}
-            <li>{{ character.name }} - {{ character.status }}</li>
+            <li>
+                <a href="/characters/{{ character.id }}">
+                    {{ character.id }} - {{ character.name }}
+                </a>
+            </li>
         {% endfor %}
     </ul>
-     <a href="/search"><button>Search Character</button></a>
+    <a href="/search"><button>Search Character</button></a>
 </body>
 </html>

@@ -1,17 +1,17 @@
 <html>
 <head>
-  <title>Character</title>
+    <title>Character</title>
 </head>
 <body>
-  <h1>{{ character.name }}</h1>
-  <p>Status: {{ character.status }}</p>
-  <p>Species: {{ character.species }}</p>
-  <p>Origin: {{ character.origin.name }}</p>
-  <p>Episodes:</p>
-  <ul>
-    {% for episode in character. Episodes %}
-      <li><a href="/episode/{{ episode.id }}">{{ episode.name }}</a></li>
-    {% endfor %}
-  </ul>
+    <h1>{{ character.name }}</h1>
+    <p>Status: {{ character.status }}</p>
+    <p>Species: {{ character.species }}</p>
+    <p>Origin: {{ character.origin.name }}</p>
+    <p>Episodes:</p>
+    <ul>
+        {% for episode in character.episodes %}
+            <li><a href="/episode/{{ episode.id }}">{{ episode.name }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
